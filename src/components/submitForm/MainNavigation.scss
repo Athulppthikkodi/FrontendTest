@@ -1,0 +1,32 @@
+.navbar{
+    background-color: #1976D2;
+    padding: 16px 0;
+    color: #fff;
+    .wrap{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    h1{
+        font-size: 18px;
+        padding-left: 10px;
+        padding-bottom: 7px;
+        font-weight: 500;
+        margin: 0;
+    }
+    .left-section{
+        display: flex;
+        align-items: center;
+        width: calc(50% - 10px);
+        max-width: fit-content;
+    }
+    .right-section{
+        display: flex;
+        align-items: center;
+        width: calc(50% - 10px);
+        max-width: fit-content;
+        .icon{
+            padding: 0 10px;
+        }
+    }
+}

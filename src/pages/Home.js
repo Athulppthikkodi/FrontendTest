@@ -1,40 +1,37 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import SubmitForm from "../components/submitForm/SubmitForm";
 import { useDispatch } from "react-redux";
 import { empolyAction } from "../store/employSlice";
+import SubmitForm from "../components/submitForm/SubmitForm";
+
 const Home = () => {
   const [formData, setFormData] = useState({
-    id: "",
+    id: uuidv4(),
     name: "",
-    email: "",
-    number: "",
+    leagues: [],
+    position: "",
     status: "",
+    height: "",
     date: "",
+    age: "",
   });
   const dispatch = useDispatch();
-  function handleInputChange(e) {
-    let { name, value } = e.target;
-    if (name === "date") {
-      value = new Date(value).toISOString();
-    }
-    setFormData((prevData) => {
-      return {
-        ...prevData,
-        [name]: value,
-        id: uuidv4(),
-      };
-    });
-  }
+  const navigate = useNavigate();
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(empolyAction.addEmploy(formData));
-    e.target.reset();
+    navigate('/employs')
+    
   }
+
   return (
     <SubmitForm
+      formData={formData}
+      setFormData={setFormData}
       handleSubmit={handleSubmit}
-      handleInputChange={handleInputChange}
+
     />
   );
 };

@@ -1,14 +1,29 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-
-
+import React from "react";
+import hamberger from '../../assets/hamberger_Icon.png';
+import starIcon from '../../assets/start_Icon.png';
+import opIcon from '../../assets/op_icon.png';
+import './MainNavigation.scss'
 const MainNavigation = () => {
   return (
-    <ul>
-       <NavLink to='/' className={({isActive})=> (isActive? 'active': undefined)}>Home</NavLink> 
-       <NavLink to='/employs' className={({isActive})=> (isActive? 'active': undefined)}>Employ List</NavLink> 
-    </ul>
-  )
-}
+    <div className="navbar">
+      <div className="container">
+        <div className="wrap">
+          <div className="left-section">
+            <div><img src={hamberger} alt="icon" /></div>
+            <h1>Typography</h1>
+          </div>
+          <div className="right-section">
+            <div className="icon">
+            <img src={starIcon} alt="icon" />
+            </div>
+            <div className="icon">
+            <img src={opIcon} alt="icon" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default MainNavigation
+export default MainNavigation;
