@@ -31,7 +31,7 @@ const LeftTab = () => {
         <ListItemIcon>
         <StarIcon style={{ color: "#0000008F", fontSize: 25 }} />
         </ListItemIcon>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary="List item" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
