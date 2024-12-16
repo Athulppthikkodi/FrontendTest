@@ -195,6 +195,7 @@ const SubmitForm = ({
               input={<OutlinedInput label="Status" />}
               onChange={handleInputChange}
               name="status"
+              sx={{color: '#fff'}}
               renderValue={(selected) => (
                 <div
                   style={{
@@ -214,7 +215,7 @@ const SubmitForm = ({
               {status.map((status) => (
                 <MenuItem key={status} value={status}>
                   <Checkbox checked={formData?.status?.includes(status)} />
-                  <ListItemText primary={status} />
+                  <ListItemText primary={status}  />
                 </MenuItem>
               ))}
             </Select>

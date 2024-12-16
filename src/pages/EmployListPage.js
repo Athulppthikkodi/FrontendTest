@@ -9,6 +9,7 @@ import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import LeagueCell from "../components/LeagueCell";
 const EmployListPage = () => {
   const employs = useSelector((state) => state.employ.employs);
   const dispatch = useDispatch();
@@ -17,7 +18,14 @@ const EmployListPage = () => {
       return { ...el };
     })
   );
+  const [expandedRows, setExpandedRows] = useState({});
 
+  const toggleRowExpansion = (rowId) => {
+    setExpandedRows((prev) => ({
+      ...prev,
+      [rowId]: !prev[rowId],
+    }));
+  };
   const navigate = useNavigate();
 
   //-----
@@ -66,14 +74,26 @@ const EmployListPage = () => {
       field: "leagues",
       headerName: "Leagues Played",
       type: "number",
-      width: 200,
+      width: 250,
       editable: true,
+      renderCell: (params) => (
+        <LeagueCell
+          value={params.value || []}
+          expanded={!!expandedRows[params.id]}
+          onToggle={() => toggleRowExpansion(params.id)}
+        />
+      ),
     },
     {
       field: "status",
       headerName: "Status",
       sortable: false,
       width: 130,
+      renderCell: (params) => (
+        <span style={{color: '#fff'}} className={`status ${params.value === 'Active'&& 'active'}`}>
+          {params.value}   
+        </span>
+      ),
     },
 
     {
@@ -97,7 +117,7 @@ const EmployListPage = () => {
     {
       field: "actions",
       headerName: "",
-      width: 80,
+      width: 62,
       sortable: false,
       renderCell: (params) => {
        
@@ -165,10 +185,18 @@ const EmployListPage = () => {
         <DataGrid
           rows={currentEmploys}
           columns={columns}
+          getRowHeight={(params) => {
+            const leagues = params?.model?.leagues|| [];
+            const isExpanded = expandedRows[params.id] || false;
+            const baseHeight = 60; // Default row height
+            const expandedHeight = 40 + leagues.length * 20; // Calculate based on items
+            
+            return isExpanded ? expandedHeight : baseHeight;
+          }}
           sx={{
           
             '& .MuiDataGrid-columnHeader': {
-              fontWeight: 'bold', 
+              fontWeight: '900', 
               backgroundColor: '#f0f0f0', 
             },
           }}

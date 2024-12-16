@@ -28,3 +28,17 @@
         padding-bottom: 50px;
     }
 }
+.status{
+    background-color: #EF6C00;
+    color: '#FFFFFF';
+    padding: 8px 10px;
+    border-radius: 100px;
+    &.active{
+        background-color: #72CD2C;
+        color: '#FFFFFF';
+
+    }
+}
+.css-1gqmilo-MuiDataGrid-columnHeaderTitle{
+    font-weight: 600 !important;
+}
