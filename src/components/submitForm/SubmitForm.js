@@ -10,7 +10,6 @@ import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import { Chip } from "@mui/material";
 import "./SubmitForm.scss";
-import { useNavigate } from "react-router-dom";
 const leagues = [
   "Laliga",
   "League1",
@@ -65,7 +64,7 @@ const SubmitForm = ({
         leagues: leagueNames,
       };
     });
-  }, [leagueNames]);
+  }, [leagueNames,setFormData]);
 
   const handleDeleteLeague = (valueToRemove) => {
     setLeagueNames((prev) => prev.filter((name) => name !== valueToRemove));
@@ -94,7 +93,7 @@ const SubmitForm = ({
         return { ...prevData, age: age };
       });
     }
-  }, [formData?.date]);
+  }, [formData?.date, setFormData]);
 
   // function handleNavigate() {
   //   navigate(`/employs/${formData.id}`);
@@ -200,7 +199,7 @@ const SubmitForm = ({
                 <div
                   style={{
                     backgroundColor:
-                      selected == "Active" ? "#72CD2C" : "#EF6C00",
+                      selected === "Active" ? "#72CD2C" : "#EF6C00",
                     maxWidth: "fit-content",
                     padding: "4px 10px",
                     borderRadius: "100px",

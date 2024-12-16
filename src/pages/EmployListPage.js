@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useRef } from "react";
 import "./Employ.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { empolyAction } from "../store/employSlice";
