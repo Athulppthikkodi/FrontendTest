@@ -9,7 +9,10 @@
         border-right: 1px solid #00000024;
         min-height: 90vh;
     }
-  
+    .right-root{
+        width: calc(80% - 10px);
+        padding: 38px;
+    }
    
 }
 @media screen and (max-width: 991px) {
