@@ -11,13 +11,14 @@ function App() {
       element: <Root />,
       // errorElement: <h1>404</h1>,
       children: [
-        { index: true, element: <Home /> },
-        { path: "employs", element: <EmployListPage /> },
+        { index: true, element: <EmployListPage /> },
+        { path: "employs", element:  <Home/>},
         { path: "employs/:id", element: <UpdateEmploy /> },
       ],
     },
   ]);
   return <RouterProvider router={route} />;
+  // return <div>home</div>
 }
 
 export default App;

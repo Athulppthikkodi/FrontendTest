@@ -16,7 +16,7 @@ export default function UpdateEmploy() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(empolyAction.updateEmploy(updateInput));
-    navigate('/employs')
+    navigate('/')
     }
 
   return (

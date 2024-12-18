@@ -18,6 +18,7 @@ const EmployListPage = () => {
       return { ...el };
     })
   );
+
   const [expandedRows, setExpandedRows] = useState({});
 
   const toggleRowExpansion = (rowId) => {
@@ -53,15 +54,15 @@ const EmployListPage = () => {
     handleClose();
   }
 
-  function handleNavigate(){
-    navigate('/')
+  function handleNavigate() {
+    navigate("/employs");
   }
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {
       field: "name",
       headerName: "User",
-      width: 200,
+      width: 220,
       editable: true,
     },
     {
@@ -74,7 +75,7 @@ const EmployListPage = () => {
       field: "leagues",
       headerName: "Leagues Played",
       type: "number",
-      width: 250,
+      width: 300,
       editable: true,
       renderCell: (params) => (
         <LeagueCell
@@ -88,10 +89,13 @@ const EmployListPage = () => {
       field: "status",
       headerName: "Status",
       sortable: false,
-      width: 130,
+      width: 160,
       renderCell: (params) => (
-        <span style={{color: '#fff'}} className={`status ${params.value === 'Active'&& 'active'}`}>
-          {params.value}   
+        <span
+          style={{ color: "#fff" }}
+          className={`status ${params.value === "Active" && "active"}`}
+        >
+          {params.value}
         </span>
       ),
     },
@@ -103,7 +107,7 @@ const EmployListPage = () => {
       width: 100,
       renderCell: (params) => (
         <div>
-          {params.value} m  {/* Display the height followed by "m" */}
+          {params.value} m {/* Display the height followed by "m" */}
         </div>
       ),
     },
@@ -117,25 +121,21 @@ const EmployListPage = () => {
     {
       field: "actions",
       headerName: "",
-      width: 62,
+      width: 100,
       sortable: false,
+      filterable: false, // Exclude this column from column search
+      hideable: false,
       renderCell: (params) => {
-       
         return (
-          <div
-            className="action"
-            style={{ position: "relative" }}
-          >
+          <div className="action" style={{ position: "relative" }}>
             <div
               className="action-btn"
               onClick={(e) => handleOpen(e, params.row)}
-              
             >
-              <span >.</span>
-              <span >.</span>
+              <span>.</span>
+              <span>.</span>
               <span>.</span>
             </div>
-         
           </div>
         );
       },
@@ -148,8 +148,8 @@ const EmployListPage = () => {
   return (
     <div className="employ-list-outer">
       <h2>User management</h2>
-      <Box sx={{ height: 400, width: "100%" , position: 'relative'}}>
-      <Box
+      <Box sx={{ height: "auto", width: "100%", position: "relative" }}>
+        <Box
           sx={{
             position: "absolute",
             top: "-40px", // Adjust based on spacing
@@ -162,42 +162,40 @@ const EmployListPage = () => {
           <Button
             variant="contained"
             color="primary"
-            
             onClick={() => handleNavigate()}
             sx={{
-              backgroundColor:'#fff',
-              color:'#1976D2',
-              border:'1px solid #1976D2',
-              boxShadow: 'none',
-              fontSize: '13px',
-              padding: '3px 30px',
-              transition: 'all 0.5s ease-in-out',
-              "&:hover":{
-                backgroundColor: '#1976D2',
-                color: '#fff',
-                boxShadow:'none'
-              }
+              backgroundColor: "#fff",
+              color: "#1976D2",
+              border: "1px solid #1976D2",
+              boxShadow: "none",
+              fontSize: "13px",
+              padding: "3px 30px",
+              transition: "all 0.5s ease-in-out",
+              "&:hover": {
+                backgroundColor: "#1976D2",
+                color: "#fff",
+                boxShadow: "none",
+              },
             }}
           >
-           New
+            New
           </Button>
         </Box>
         <DataGrid
           rows={currentEmploys}
           columns={columns}
           getRowHeight={(params) => {
-            const leagues = params?.model?.leagues|| [];
+            const leagues = params?.model?.leagues || [];
             const isExpanded = expandedRows[params.id] || false;
             const baseHeight = 60; // Default row height
             const expandedHeight = 40 + leagues.length * 20; // Calculate based on items
-            
+
             return isExpanded ? expandedHeight : baseHeight;
           }}
           sx={{
-          
-            '& .MuiDataGrid-columnHeader': {
-              fontWeight: '900', 
-              backgroundColor: '#f0f0f0', 
+            "& .MuiDataGrid-columnHeader": {
+              fontWeight: "900",
+              backgroundColor: "#f0f0f0",
             },
           }}
           initialState={{
@@ -223,50 +221,62 @@ const EmployListPage = () => {
           }}
         />
         <Popover
-        open={Boolean(anchorEl)}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        aria-hidden={false} 
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-      >
-        <div
-          style={{
-            padding: "10px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-            minWidth: "137px",
+          open={Boolean(anchorEl)}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          aria-hidden={false}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
           }}
         >
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<EditIcon />}
-            onClick={() => handleEdit(selectedRow?.id)}
-            className="btn"
-            sx={{backgroundColor: '#fff', color: '#000000DE', textTransform: 'capitalize', fontSize: '15px', boxShadow: 'none'}}
+          <div
+            style={{
+              padding: "10px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              minWidth: "137px",
+            }}
           >
-            Edit
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            className="btn"
-            startIcon={<DeleteIcon />}
-            onClick={() => handleDelete(selectedRow?.id)}
-            sx={{backgroundColor: '#fff', color: '#000000DE', textTransform: 'capitalize', fontSize: '15px', boxShadow: 'none'}}
-          >
-            Delete
-          </Button>
-        </div>
-      </Popover>
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<EditIcon />}
+              onClick={() => handleEdit(selectedRow?.id)}
+              className="btn"
+              sx={{
+                backgroundColor: "#fff",
+                color: "#000000DE",
+                textTransform: "capitalize",
+                fontSize: "15px",
+                boxShadow: "none",
+              }}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              className="btn"
+              startIcon={<DeleteIcon />}
+              onClick={() => handleDelete(selectedRow?.id)}
+              sx={{
+                backgroundColor: "#fff",
+                color: "#000000DE",
+                textTransform: "capitalize",
+                fontSize: "15px",
+                boxShadow: "none",
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        </Popover>
       </Box>
     </div>
   );

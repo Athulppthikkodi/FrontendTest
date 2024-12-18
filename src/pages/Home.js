@@ -16,13 +16,14 @@ const Home = () => {
     date: "",
     age: "",
   });
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(empolyAction.addEmploy(formData));
-    navigate('/employs')
+    navigate('/')
     
   }
 

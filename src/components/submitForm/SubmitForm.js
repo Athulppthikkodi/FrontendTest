@@ -95,9 +95,8 @@ const SubmitForm = ({
     }
   }, [formData?.date, setFormData]);
 
-  // function handleNavigate() {
-  //   navigate(`/employs/${formData.id}`);
-  // }
+
+  
 
   return (
     <div>
