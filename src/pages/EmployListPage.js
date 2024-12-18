@@ -77,6 +77,7 @@ const EmployListPage = () => {
       type: "number",
       width: 300,
       editable: true,
+      headerClassName: 'super-app-theme--header',
       renderCell: (params) => (
         <LeagueCell
           value={params.value || []}

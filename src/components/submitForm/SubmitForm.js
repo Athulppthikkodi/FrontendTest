@@ -116,6 +116,9 @@ const SubmitForm = ({
               width: "calc(50% - 10px)",
               maxWidth: "548px",
               margin: "20px 0",
+              '@media (max-width:700px)': {
+                width: '100%'
+        },
             }}
           />
           <TextField
@@ -136,6 +139,9 @@ const SubmitForm = ({
               width: "calc(50% - 10px)",
               maxWidth: "548px",
               margin: "20px 0",
+              '@media (max-width:700px)': {
+                width: '100%'
+        },
             }}
           />
         </div>
@@ -145,6 +151,9 @@ const SubmitForm = ({
               width: "calc(50% - 10px)",
               maxWidth: "548px",
               margin: "20px 0",
+              '@media (max-width:700px)': {
+                width: '100%'
+        },
             }}
           >
             <InputLabel id="demo-multiple-checkbox-label">Leagues</InputLabel>
@@ -183,6 +192,9 @@ const SubmitForm = ({
               width: "calc(50% - 10px)",
               maxWidth: "548px",
               margin: "20px 0",
+              '@media (max-width:700px)': {
+                width: '100%'
+        },
             }}
           >
             <InputLabel id="demo-simple-select-label">Status</InputLabel>
@@ -231,6 +243,9 @@ const SubmitForm = ({
               width: "calc(50% - 10px)",
               maxWidth: "548px",
               margin: "20px 0",
+              '@media (max-width:700px)': {
+                width: '100%'
+        },
             }}
             inputProps={{
               step: "0.1",
@@ -246,6 +261,9 @@ const SubmitForm = ({
               width: "calc(50% - 10px)",
               maxWidth: "548px",
               margin: "20px 0",
+              '@media (max-width:700px)': {
+                width: '100%'
+        },
             }}
           >
             <InputLabel id="demo-simple-select-label">Position</InputLabel>
